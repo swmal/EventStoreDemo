@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\CarRental\**" />
+    <Compile Remove="Commands\Car\**" />
+    <EmbeddedResource Remove="Commands\CarRental\**" />
+    <EmbeddedResource Remove="Commands\Car\**" />
+    <None Remove="Commands\CarRental\**" />
+    <None Remove="Commands\Car\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EventStoreDemo.EventStore\EventStoreDemo.EventStore.csproj" />
+  </ItemGroup>
+
+</Project>
