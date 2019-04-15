@@ -8,6 +8,8 @@ namespace EventStoreDemo.Domain.CarRental
     {
         public string Registration { get; set; }
 
+        public string RegistrationDate { get; set; }
+
         public string Model { get; set; }
 
         public int Milage { get; set; }

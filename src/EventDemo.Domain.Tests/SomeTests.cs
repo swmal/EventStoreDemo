@@ -43,12 +43,14 @@ namespace EventDemo.Domain.Tests
             ch1.Execute();
 
             // Add an xc 60
-            var c2 = new AquireCarCommand(_xc60.Registration, "Bilia", DateTime.Now, _xc60.Model, 0);
+            var regDate1 = new DateTime(2018, 10, 10);
+            var c2 = new AquireCarCommand(_xc60.Registration, "Bilia", DateTime.Now, regDate1, _xc60.Model, 0);
             var ch2 = new AquireCarCommandHandler(c2, carRental);
             ch2.Execute();
 
             // Add a V90
-            var c3 = new AquireCarCommand("DEF 456", "Bilia", DateTime.Now, "Volvo V90", 0);
+            var regDate2 = new DateTime(2018, 8, 8);
+            var c3 = new AquireCarCommand("DEF 456", "Bilia", DateTime.Now, regDate2, "Volvo V90", 0);
             var ch3 = new AquireCarCommandHandler(c3, carRental);
             ch3.Execute();
 

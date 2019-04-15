@@ -6,16 +6,19 @@ namespace EventStoreDemo.Domain.CarRental.Commands
 {
     public class AquireCarCommand : Command<CarRental>
     {
-        public AquireCarCommand(string registration, string seller, DateTime aquiredDate, string model, int milage)
+        public AquireCarCommand(string registration, string seller, DateTime aquiredDate, DateTime registrationDate, string model, int milage)
         {
             Registration = registration;
             Seller = seller;
             AquiredDate = aquiredDate;
+            RegistrationDate = registrationDate;
             Model = model;
             Milage = milage;
         }
 
         public string Registration { get; set; }
+
+        public DateTime RegistrationDate { get; set; }
 
         public string Model { get; set; }
 

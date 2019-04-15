@@ -9,6 +9,8 @@ namespace EventStoreDemo.Domain.CarRental.Events
     {
         public string Registration { get; set; }
 
+        public DateTime RegistrationDate { get; set; }
+
         public string CarRentalCode { get; set; }
 
         public string Model { get; set; }

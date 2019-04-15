@@ -28,11 +28,12 @@ namespace EventStoreDemo.Domain.CarRental
                 EstablishedDate = DateTime.Now
             });
         }
-        public void AquireCar(string registration, string model, string seller, DateTime aquiredDate, int milage)
+        public void AquireCar(string registration, string model, string seller, DateTime aquiredDate, DateTime registrationDate, int milage)
         {
             AddEvent(new CarAquired
             {
                 Registration = registration,
+                RegistrationDate = registrationDate,
                 Model = model,
                 CarRentalCode = Code,
                 Seller = seller,

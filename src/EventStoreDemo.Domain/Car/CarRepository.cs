@@ -57,7 +57,7 @@ namespace EventStoreDemo.Domain.Car
             var cars = GetAllDictionary();
             if (!cars.ContainsKey(registration))
             {
-                throw new InvalidOperationException("There is no car with the registration " + registration);
+                return null;
             }
             return cars[registration];
         }

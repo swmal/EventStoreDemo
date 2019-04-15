@@ -18,7 +18,7 @@ namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 
         protected override void ExecuteCommand(CarRental aggregateRoot)
         {
-            aggregateRoot.AquireCar(_command.Registration, _command.Model, _command.Seller, _command.AquiredDate, _command.Milage);
+            aggregateRoot.AquireCar(_command.Registration, _command.Model, _command.Seller, _command.AquiredDate,_command.RegistrationDate, _command.Milage);
         }
     }
 }

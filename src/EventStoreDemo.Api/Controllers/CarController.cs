@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using EventStoreDemo.Api.Models;
+using EventStoreDemo.Api.Models.InputModels;
 using EventStoreDemo.Domain;
 using EventStoreDemo.Domain.Car;
 using EventStoreDemo.Domain.Car.CommandHandlers;
@@ -29,42 +32,54 @@ namespace EventStoreDemo.Api.Controllers
             }).ToList();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(string code)
+        // GET api/car/{registration}
+        [HttpGet("{registration}")]
+        public ActionResult<CarViewModel> Get(string registration)
         {
-            return "value";
+            var car = _carRepository.GetOne(registration);
+            if (car == null) return NotFound();
+            var viewModel = new CarViewModel
+            {
+                Registration = car.Registration,
+                Model = car.Model,
+                Milage = car.Milage
+            };
+            return Ok(viewModel);
         }
 
         // POST api/car/startdriving
-        [HttpPost]
-        public void StartDriving(string registration, string driver)
+        [HttpPost, Route("/api/cars/{registration}/usage/start")]
+        public StatusCodeResult Start([FromRoute]string registration, [FromBody]StartDrivingInputModel model)
         {
             var car = _carRepository.GetOne(registration);
+            if (car == null) return NotFound();
             var driveCommand = new StartDrivingCommand
             {
                 Registration = registration,
-                Driver = new Driver { Name = driver },
+                Driver = new Driver { Name = model.Driver },
                 DrivingStartedAt = DateTime.Now
             };
             var startDrivingHandler = new StartDrivingCommandHandler(driveCommand, car);
             startDrivingHandler.Execute();
+            return Ok();
         }
 
         // POST api/car/stopdriving
-        [HttpPost]
-        public void StopDriving(string registration, string driver, int distance)
+        [HttpPost, Route("/api/cars/{registration}/usage/stop")]
+        public StatusCodeResult StopDriving([FromRoute]string registration, [FromBody]StopDrivingInputModel model)
         {
             var car = _carRepository.GetOne(registration);
+            if (car == null) return NotFound();
             var stopCommand = new StopDrivingCommand
             {
                 Registration = registration,
-                Driver = new Driver { Name = driver },
+                Driver = new Driver { Name = model.Driver },
                 DrivingStoppedAt = DateTime.Now,
-                DistanceDriven = distance
+                DistanceDriven = model.DistanceDriven
             };
             var stopDrivingHandler = new StopDrivingCommandHandler(stopCommand, car);
             stopDrivingHandler.Execute();
+            return Ok();
         }
 
         // DELETE api/values/5
