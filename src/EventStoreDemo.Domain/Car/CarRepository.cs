@@ -24,7 +24,8 @@ namespace EventStoreDemo.Domain.Car
                         {
                             Model = e.Model,
                             Milage = e.Milage,
-                            Registration = e.Registration
+                            Registration = e.Registration,
+                            RegistrationDate = e.RegistrationDate
                         };
                         allCars[e.Registration] = car;
                         break;

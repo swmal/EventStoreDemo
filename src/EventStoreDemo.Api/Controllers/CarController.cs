@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventStoreDemo.Api.Controllers
 {
-    [Route("api/car")]
+    [Route("api/cars")]
     [ApiController]
     public class CarController : ControllerBase
     {
@@ -27,12 +27,13 @@ namespace EventStoreDemo.Api.Controllers
             return cars.Select(x => new CarViewModel
             {
                 Registration = x.Registration,
+                RegistrationDate = x.RegistrationDate,
                 Model = x.Model,
                 Milage = x.Milage
             }).ToList();
         }
 
-        // GET api/car/{registration}
+        // GET api/cars/{registration}
         [HttpGet("{registration}")]
         public ActionResult<CarViewModel> Get(string registration)
         {
@@ -41,7 +42,7 @@ namespace EventStoreDemo.Api.Controllers
             var viewModel = new CarViewModel
             {
                 Registration = car.Registration,
-                Model = car.Model,
+                RegistrationDate = car.RegistrationDate,
                 Milage = car.Milage
             };
             return Ok(viewModel);

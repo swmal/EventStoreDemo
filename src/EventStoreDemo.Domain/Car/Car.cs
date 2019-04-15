@@ -18,6 +18,8 @@ namespace EventStoreDemo.Domain.Car
 
         public string Registration { get; set; }
 
+        public DateTime RegistrationDate { get; set; }
+
         public bool NeedsService()
         {
             if(DateTime.Now > LastServiceDate.AddYears(1) || Milage > (1500 + MilageAtLastService))
