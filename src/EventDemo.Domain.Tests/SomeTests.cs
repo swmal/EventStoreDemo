@@ -64,7 +64,7 @@ namespace EventDemo.Domain.Tests
             var pickUpCommand = new PickupCarCommand
             {
                 Registration = "ABC 123",
-                Driver = new Driver { Name = "Mats" },
+                Driver = new EventStoreDemo.Domain.CarRental.Driver { Name = "Mats" },
                 Milage = 0,
                 PickedUpAt = DateTime.Parse("2019-02-02T12:00")
             };
@@ -74,7 +74,7 @@ namespace EventDemo.Domain.Tests
             var driveCommand = new StartDrivingCommand
             {
                 Registration = "ABC 123",
-                Driver = new Driver { Name = "Mats"},
+                Driver = new EventStoreDemo.Domain.Car.Driver { Name = "Mats"},
                 DrivingStartedAt = DateTime.Parse("2019-02-02T12:06")
             };
             var startDrivingHandler = new StartDrivingCommandHandler(driveCommand, _xc60);
@@ -83,7 +83,7 @@ namespace EventDemo.Domain.Tests
             var stopCommand = new StopDrivingCommand
             {
                 Registration = "ABC 123",
-                Driver = new Driver { Name = "Mats" },
+                Driver = new EventStoreDemo.Domain.Car.Driver { Name = "Mats" },
                 DrivingStoppedAt = DateTime.Parse("2019-02-02T12:06"),
                 DistanceDriven = 105
             };

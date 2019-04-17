@@ -5,20 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CarRental\**" />
+    <Compile Remove="Car\**" />
     <Compile Remove="Commands\CarRental\**" />
     <Compile Remove="Commands\Car\**" />
+    <EmbeddedResource Remove="CarRental\**" />
+    <EmbeddedResource Remove="Car\**" />
     <EmbeddedResource Remove="Commands\CarRental\**" />
     <EmbeddedResource Remove="Commands\Car\**" />
+    <None Remove="CarRental\**" />
+    <None Remove="Car\**" />
     <None Remove="Commands\CarRental\**" />
     <None Remove="Commands\Car\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EventStore.Client" Version="5.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\EventStoreDemo.EventStore\EventStoreDemo.EventStore.csproj" />
   </ItemGroup>
 
 </Project>
