@@ -7,7 +7,7 @@ using EventStoreDemo.Domain.Events;
 
 namespace EventStoreDemo.Domain.CarRental.EventHandlers
 {
-    public class CarPickedUpEventHandler : DomainEventHandler<CarPickedUp>, IDomainEventHandler
+    public class CarPickedUpEventHandler : DomainEventHandler<CarPickedUp>
     {
         public CarPickedUpEventHandler()
         {

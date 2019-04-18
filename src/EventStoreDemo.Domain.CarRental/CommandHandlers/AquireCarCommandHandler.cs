@@ -2,9 +2,9 @@
 
 namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 {
-    public class AquireCarCommandHandler : CommandHandler<CarRental>
+    public class AquireCarCommandHandler : CarRentalCommandHandlerBase
     {
-       public AquireCarCommandHandler(AquireCarCommand command) : base(command, new DomainEventHandlerResolver())
+       public AquireCarCommandHandler(AquireCarCommand command) : base(command)
         {
             _command = command;
         }

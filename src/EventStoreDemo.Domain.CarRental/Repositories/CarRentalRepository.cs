@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.Repositories
 {
-    public class CarRentalRepository : RepositoryBase<CarRental>
+    public class CarRentalRepository : EventStoreRepositoryBase<CarRental>
     {
         private Dictionary<string, CarRental> GetAllDictionary()
         {

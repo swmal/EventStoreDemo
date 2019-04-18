@@ -8,13 +8,12 @@ namespace EventStoreDemo.Domain
     public abstract class CommandHandler<T>
         where T : AggregateRoot, new()
     {
-        public CommandHandler(Command<T> command, IDomainEventHandlerResolver eventHandlerResolver)
+        public CommandHandler(Command<T> command)
         {
-            EventHandlerResolver = eventHandlerResolver;
             _root = new T();
         }
 
-        public IDomainEventHandlerResolver EventHandlerResolver { get; private set; }
+        public abstract IDomainEventHandlerResolver EventHandlerResolver { get; }
 
         protected CommandHandler<T> Handler { get; private set; }
 
@@ -25,6 +24,8 @@ namespace EventStoreDemo.Domain
 
         private readonly T _root;
         protected abstract void ExecuteCommand(T aggregateRoot);
+
+        protected virtual void OnCommandExecuted(T aggregateRoot) { }
         public void Execute()
         {
             ExecuteCommand(_root);
@@ -33,6 +34,7 @@ namespace EventStoreDemo.Domain
                 var handler = EventHandlerResolver.ResolveHandler(evt.GetType());
                 handler.HandleEvent(evt);
             }
+            OnCommandExecuted(_root);
         }
     }
 }

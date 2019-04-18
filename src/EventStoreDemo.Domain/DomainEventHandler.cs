@@ -1,4 +1,5 @@
 ﻿using EventStore.ClientAPI;
+using EventStoreDemo.Domain.EventHandlers;
 using EventStoreDemo.Domain.Events;
 using Newtonsoft.Json;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace EventStoreDemo.Domain
 {
-    public class DomainEventHandler<T>
+    public class DomainEventHandler<T> : IDomainEventHandler
         where T : Event
     {
         private T CastEvent(Event e)

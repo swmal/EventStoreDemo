@@ -4,9 +4,9 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.Car.CommandHandlers
 {
-    public class StopDrivingCommandHandler : CommandHandler<Car>
+    public class StopDrivingCommandHandler : CarCommandHandlerBase
     {
-        public StopDrivingCommandHandler(StopDrivingCommand command) : base(command, new DomainEventHandlerResolver())
+        public StopDrivingCommandHandler(StopDrivingCommand command) : base(command)
         {
             _command = command;
         }

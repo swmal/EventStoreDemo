@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 {
-    public class SellCarCommandHandler : CommandHandler<CarRental>
+    public class SellCarCommandHandler : CarRentalCommandHandlerBase
     {
-        public SellCarCommandHandler(SellCarCommand command) : base(command, new DomainEventHandlerResolver())
+        public SellCarCommandHandler(SellCarCommand command) : base(command)
         {
             _command = command;
         }

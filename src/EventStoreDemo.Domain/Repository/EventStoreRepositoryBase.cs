@@ -8,7 +8,7 @@ using System.Text;
 namespace EventStoreDemo.Domain.Repository
 {
     
-    public abstract class RepositoryBase<T>
+    public abstract class EventStoreRepositoryBase<T>
         where T : AggregateRoot
     {
         public abstract IEnumerable<T> GetAll();

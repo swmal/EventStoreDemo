@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.Car.CommandHandlers
 {
-    public class StartDrivingCommandHandler : CommandHandler<Car>
+    public class StartDrivingCommandHandler : CarCommandHandlerBase
     {
-        public StartDrivingCommandHandler(StartDrivingCommand command) : base(command, new DomainEventHandlerResolver())
+        public StartDrivingCommandHandler(StartDrivingCommand command) : base(command)
         {
             _command = command;
         }

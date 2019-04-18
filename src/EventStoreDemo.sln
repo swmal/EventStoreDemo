@@ -13,9 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventDemo.Domain.Tests", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Api", "EventStoreDemo.Api\EventStoreDemo.Api.csproj", "{341FF08D-D6B4-4B45-BEF6-5134A613E912}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.Domain.Car", "EventStoreDemo.Domain.Car\EventStoreDemo.Domain.Car.csproj", "{FEDAC7BB-024B-4684-A1F2-09FDE8092DEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Domain.Car", "EventStoreDemo.Domain.Car\EventStoreDemo.Domain.Car.csproj", "{FEDAC7BB-024B-4684-A1F2-09FDE8092DEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.Domain.CarRental", "EventStoreDemo.Domain.CarRental\EventStoreDemo.Domain.CarRental.csproj", "{84843C9B-F8D5-4A33-B147-7CDD98CB203D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Domain.CarRental", "EventStoreDemo.Domain.CarRental\EventStoreDemo.Domain.CarRental.csproj", "{84843C9B-F8D5-4A33-B147-7CDD98CB203D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Domain.Booking", "EventStoreDemo.DomainBooking\EventStoreDemo.Domain.Booking.csproj", "{C5FE74E4-088F-4F59-9E3F-A1E129840BDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Domain.Booking.Tests", "EventStoreDemo.Domain.Booking.Tests\EventStoreDemo.Domain.Booking.Tests.csproj", "{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.Api.Booking", "EventStoreDemo.Api.Booking\EventStoreDemo.Api.Booking.csproj", "{60930A03-1566-4371-A8A5-60294134A10A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{EDFED760-01B0-4744-AEAA-42CE18F59532}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,12 +55,27 @@ Global
 		{84843C9B-F8D5-4A33-B147-7CDD98CB203D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84843C9B-F8D5-4A33-B147-7CDD98CB203D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84843C9B-F8D5-4A33-B147-7CDD98CB203D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FE74E4-088F-4F59-9E3F-A1E129840BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FE74E4-088F-4F59-9E3F-A1E129840BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FE74E4-088F-4F59-9E3F-A1E129840BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FE74E4-088F-4F59-9E3F-A1E129840BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60930A03-1566-4371-A8A5-60294134A10A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60930A03-1566-4371-A8A5-60294134A10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60930A03-1566-4371-A8A5-60294134A10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60930A03-1566-4371-A8A5-60294134A10A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7585B360-39D2-4634-BB33-08A0AF34B580} = {6AB0D1B7-40C4-4C1C-8808-53B7F30C8E9D}
+		{341FF08D-D6B4-4B45-BEF6-5134A613E912} = {EDFED760-01B0-4744-AEAA-42CE18F59532}
+		{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F} = {6AB0D1B7-40C4-4C1C-8808-53B7F30C8E9D}
+		{60930A03-1566-4371-A8A5-60294134A10A} = {EDFED760-01B0-4744-AEAA-42CE18F59532}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EFD80D8-B7F1-44CD-ABBE-B9950340F3C1}

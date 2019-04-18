@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.Car.EventHandlers
 {
-    public class DrivingStoppedEventHandler : DomainEventHandler<DrivingStopped>, IDomainEventHandler
+    public class DrivingStoppedEventHandler : DomainEventHandler<DrivingStopped>
     {
     }
 }

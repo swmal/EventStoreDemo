@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.Car.EventHandlers
 {
-    public class OwnerChangedEventHandler : DomainEventHandler<OwnerChanged>, IDomainEventHandler
+    public class OwnerChangedEventHandler : DomainEventHandler<OwnerChanged>
     {
 
     }
