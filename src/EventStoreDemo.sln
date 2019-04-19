@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.Api.Booking"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{EDFED760-01B0-4744-AEAA-42CE18F59532}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.Api.Car", "EventStoreDemo.Api.Car\EventStoreDemo.Api.Car.csproj", "{671DBF80-26D3-47D1-8B09-1391C84B518C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{60930A03-1566-4371-A8A5-60294134A10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60930A03-1566-4371-A8A5-60294134A10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60930A03-1566-4371-A8A5-60294134A10A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{671DBF80-26D3-47D1-8B09-1391C84B518C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{671DBF80-26D3-47D1-8B09-1391C84B518C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{671DBF80-26D3-47D1-8B09-1391C84B518C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{671DBF80-26D3-47D1-8B09-1391C84B518C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{341FF08D-D6B4-4B45-BEF6-5134A613E912} = {EDFED760-01B0-4744-AEAA-42CE18F59532}
 		{B1C9983A-51B2-4C7C-8448-EC4E5B2FF24F} = {6AB0D1B7-40C4-4C1C-8808-53B7F30C8E9D}
 		{60930A03-1566-4371-A8A5-60294134A10A} = {EDFED760-01B0-4744-AEAA-42CE18F59532}
+		{671DBF80-26D3-47D1-8B09-1391C84B518C} = {EDFED760-01B0-4744-AEAA-42CE18F59532}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EFD80D8-B7F1-44CD-ABBE-B9950340F3C1}
