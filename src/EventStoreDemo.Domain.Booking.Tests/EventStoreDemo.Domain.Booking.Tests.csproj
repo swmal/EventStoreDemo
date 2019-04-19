@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EventStoreDemo.DomainBooking\EventStoreDemo.Domain.Booking.csproj" />
+    <ProjectReference Include="..\EventStoreDemo.Domain\EventStoreDemo.Domain.csproj" />
+    <ProjectReference Include="..\Microservices\Booking\EventStoreDemo.Domain.Booking\EventStoreDemo.Domain.Booking.csproj" />
   </ItemGroup>
 
 </Project>

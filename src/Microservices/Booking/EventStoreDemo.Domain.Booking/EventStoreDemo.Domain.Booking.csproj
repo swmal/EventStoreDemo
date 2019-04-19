@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EventStoreDemo.Domain\EventStoreDemo.Domain.csproj" />
+    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
+    <ProjectReference Include="..\..\..\EventStoreDemo.Domain\EventStoreDemo.Domain.csproj" />
   </ItemGroup>
 
 </Project>

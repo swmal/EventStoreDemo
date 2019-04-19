@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Models\InputModels\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -13,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EventStoreDemo.DomainBooking\EventStoreDemo.Domain.Booking.csproj" />
+    <ProjectReference Include="..\EventStoreDemo.Domain.Booking\EventStoreDemo.Domain.Booking.csproj" />
   </ItemGroup>
 
 </Project>

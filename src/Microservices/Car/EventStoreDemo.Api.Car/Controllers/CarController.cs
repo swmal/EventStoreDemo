@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using EventStoreDemo.Api.Models;
-using EventStoreDemo.Api.Models.InputModels;
+using EventStoreDemo.Api.Car.Models;
+using EventStoreDemo.Api.Car.Models.InputModels;
 using EventStoreDemo.Domain;
 using EventStoreDemo.Domain.Car;
 using EventStoreDemo.Domain.Car.CommandHandlers;
 using EventStoreDemo.Domain.Car.Commands;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventStoreDemo.Api.Controllers
+namespace EventStoreDemo.Api.Car.Controllers
 {
     [Route("api/cars")]
     [ApiController]

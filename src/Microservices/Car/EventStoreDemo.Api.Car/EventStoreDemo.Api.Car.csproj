@@ -10,13 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EventStoreDemo.Domain.CarRental\EventStoreDemo.Domain.CarRental.csproj" />
     <ProjectReference Include="..\EventStoreDemo.Domain.Car\EventStoreDemo.Domain.Car.csproj" />
-    <ProjectReference Include="..\EventStoreDemo.Domain\EventStoreDemo.Domain.csproj" />
   </ItemGroup>
 
 </Project>

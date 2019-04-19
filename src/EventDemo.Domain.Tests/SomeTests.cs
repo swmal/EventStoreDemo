@@ -1,7 +1,4 @@
-using EventStoreDemo.Domain;
-using EventStoreDemo.Domain.Car;
-using EventStoreDemo.Domain.Car.CommandHandlers;
-using EventStoreDemo.Domain.Car.Commands;
+
 using EventStoreDemo.Domain.CarRental;
 using EventStoreDemo.Domain.CarRental.CommandHandlers;
 using EventStoreDemo.Domain.CarRental.Commands;
@@ -21,14 +18,14 @@ namespace EventDemo.Domain.Tests
                 Name = "Mats Alms biluthyrning",
                 Code = "MA"
             };
-            _xc60 = new Car
-            {
-                Registration = "ABC 123", Milage = 0, Model = "Volvo XC60"
-            };
+            //_xc60 = new Car
+            //{
+            //    Registration = "ABC 123", Milage = 0, Model = "Volvo XC60"
+            //};
         }
 
         private CarRental _carRental;
-        private Car _xc60;
+        //private Car _xc60;
 
         [TestMethod]
         public void InitializeWithTwoVolvos()
@@ -44,7 +41,7 @@ namespace EventDemo.Domain.Tests
 
             // Add an xc 60
             var regDate1 = new DateTime(2018, 10, 10);
-            var c2 = new AquireCarCommand(_xc60.Registration, "Bilia", DateTime.Now, regDate1, _xc60.Model, 0);
+            var c2 = new AquireCarCommand("ABC 123", "Bilia", DateTime.Now, regDate1, "Volvo XC60", 0);
             var ch2 = new AquireCarCommandHandler(c2, carRental);
             ch2.Execute();
 
@@ -57,6 +54,7 @@ namespace EventDemo.Domain.Tests
             
         }
 
+        /*
         [TestMethod]
         public void PickupAndDrive()
         {
@@ -90,5 +88,6 @@ namespace EventDemo.Domain.Tests
             var stopDrivingHandler = new StopDrivingCommandHandler(stopCommand, _xc60);
             stopDrivingHandler.Execute();
         }
+        */
     }
 }
