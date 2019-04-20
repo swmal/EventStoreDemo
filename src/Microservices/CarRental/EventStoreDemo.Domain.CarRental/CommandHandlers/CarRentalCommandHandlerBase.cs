@@ -4,17 +4,18 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 {
-    public abstract class CarRentalCommandHandlerBase : CommandHandler<CarRental>
+    public abstract class CarRentalCommandHandlerBase<T1> : CommandHandler<CarRental, T1>
+        where T1 : Command<CarRental>
     {
-        public CarRentalCommandHandlerBase(Command<CarRental> command) : base(command)
+        public CarRentalCommandHandlerBase(T1 command) : base(command)
         {
         }
 
-        public CarRentalCommandHandlerBase(Command<CarRental> command, CarRental aggregateRoot) : base(command, aggregateRoot)
+        public CarRentalCommandHandlerBase(T1 command, CarRental aggregateRoot) : base(command, aggregateRoot)
         {
         }
 
-        public override IDomainEventHandlerResolver EventHandlerResolver => new DomainEventHandlerResolver();
+        public override sealed IDomainEventHandlerResolver EventHandlerResolver => new DomainEventHandlerResolver();
     
     }
 }

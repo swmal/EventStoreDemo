@@ -5,18 +5,19 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 {
-    public class SellCarCommandHandler : CarRentalCommandHandlerBase
+    public class SellCarCommandHandler : CarRentalCommandHandlerBase<SellCarCommand>
     {
         public SellCarCommandHandler(SellCarCommand command) : base(command)
         {
-            _command = command;
         }
 
-        private readonly SellCarCommand _command;
-
-        protected override void ExecuteCommand(CarRental aggregateRoot)
+        public SellCarCommandHandler(SellCarCommand command, CarRental aggregateRoot) : base(command, aggregateRoot)
         {
-            aggregateRoot.SellCar(_command.Registration, _command.SoldDate);
+        }
+
+        protected override void ExecuteCommand(CarRental aggregateRoot, SellCarCommand command)
+        {
+            aggregateRoot.SellCar(command.Registration, command.SoldDate);
         }
     }
 }

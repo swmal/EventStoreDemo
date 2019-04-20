@@ -5,22 +5,19 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.Car.CommandHandlers
 {
-    public class StartDrivingCommandHandler : CarCommandHandlerBase
+    public class StartDrivingCommandHandler : CarCommandHandlerBase<StartDrivingCommand>
     {
         public StartDrivingCommandHandler(StartDrivingCommand command) : base(command)
         {
-            _command = command;
         }
 
-        public StartDrivingCommandHandler(StartDrivingCommand command, Car aggregateRoot) : base(command, aggregateRoot)
+        public StartDrivingCommandHandler(StartDrivingCommand command, Car aggregate) : base(command, aggregate)
         {
-            _command = command;
         }
 
-        private readonly StartDrivingCommand _command;
-        protected override void ExecuteCommand(Car aggregateRoot)
+        protected override void ExecuteCommand(Car aggregateRoot, StartDrivingCommand command)
         {
-            aggregateRoot.StartDriving(_command.DrivingStartedAt, _command.Driver);
+            aggregateRoot.StartDriving(command.DrivingStartedAt, command.Driver);
         }
     }
 }

@@ -5,30 +5,34 @@ using System.Text;
 
 namespace EventStoreDemo.Domain
 {
-    public abstract class CommandHandler<T>
+    public abstract class CommandHandler<T, T1>
         where T : AggregateRoot, new()
+        where T1 : Command<T>
     {
-        public CommandHandler(Command<T> command)
+        public CommandHandler(T1 command)
         {
             _root = new T();
+            _command = command;
         }
 
         public abstract IDomainEventHandlerResolver EventHandlerResolver { get; }
 
-        protected CommandHandler<T> Handler { get; private set; }
+        protected T1 Handler { get; private set; }
 
-        public CommandHandler(Command<T> command, T aggregateRoot)
+        public CommandHandler(T1 command, T aggregateRoot)
         {
             _root = aggregateRoot;
+            _command = command;
         }
 
         private readonly T _root;
-        protected abstract void ExecuteCommand(T aggregateRoot);
+        private readonly T1 _command;
+        protected abstract void ExecuteCommand(T aggregateRoot, T1 command);
 
         protected virtual void OnCommandExecuted(T aggregateRoot) { }
         public void Execute()
         {
-            ExecuteCommand(_root);
+            ExecuteCommand(_root, _command);
             foreach(var evt in _root.DomainEvents)
             {
                 var handler = EventHandlerResolver.ResolveHandler(evt.GetType());

@@ -2,23 +2,20 @@
 
 namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 {
-    public class AquireCarCommandHandler : CarRentalCommandHandlerBase
+    public class AquireCarCommandHandler : CarRentalCommandHandlerBase<AquireCarCommand>
     {
-       public AquireCarCommandHandler(AquireCarCommand command) : base(command)
+        public AquireCarCommandHandler(AquireCarCommand command) : base(command)
         {
-            _command = command;
         }
 
         public AquireCarCommandHandler(AquireCarCommand command, CarRental aggregateRoot) : base(command, aggregateRoot)
         {
-            _command = command;
         }
 
-        private readonly AquireCarCommand _command;
-
-        protected override void ExecuteCommand(CarRental aggregateRoot)
+        // 
+        protected override void ExecuteCommand(CarRental aggregateRoot, AquireCarCommand command)
         {
-            aggregateRoot.AquireCar(_command.Registration, _command.Model, _command.Seller, _command.AquiredDate,_command.RegistrationDate, _command.Milage);
+            aggregateRoot.AquireCar(command.Registration, command.Model, command.Seller, command.AquiredDate, command.RegistrationDate, command.Milage);
         }
     }
 }

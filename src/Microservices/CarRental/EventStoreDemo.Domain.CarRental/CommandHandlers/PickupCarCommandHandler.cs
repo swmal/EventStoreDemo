@@ -5,23 +5,19 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.CommandHandlers
 {
-    public class PickupCarCommandHandler : CarRentalCommandHandlerBase
+    public class PickupCarCommandHandler : CarRentalCommandHandlerBase<PickupCarCommand>
     {
         public PickupCarCommandHandler(PickupCarCommand command) : base(command)
         {
-            _command = command;
         }
 
         public PickupCarCommandHandler(PickupCarCommand command, CarRental aggregateRoot) : base(command, aggregateRoot)
         {
-            _command = command;
         }
 
-        private readonly PickupCarCommand _command;
-
-        protected override void ExecuteCommand(CarRental aggregateRoot)
+        protected override void ExecuteCommand(CarRental aggregateRoot, PickupCarCommand command)
         {
-            aggregateRoot.PickupCar(_command.Registration, _command.Driver, _command.PickedUpAt, _command.Milage);
+            aggregateRoot.PickupCar(command.Registration, command.Driver, command.PickedUpAt, command.Milage);
         }
     }
 }

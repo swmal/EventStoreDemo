@@ -5,13 +5,14 @@ using System.Text;
 
 namespace EventStoreDemo.Domain.Booking.CommandHandlers
 {
-    public abstract class BookingCommandHandlerBase : CommandHandler<Booking>
+    public abstract class BookingCommandHandlerBase<T1> : CommandHandler<Booking, T1>
+        where T1 : Command<Booking>
     {
-        public BookingCommandHandlerBase(Command<Booking> command) : base(command)
+        public BookingCommandHandlerBase(T1 command) : base(command)
         {
         }
 
-        public BookingCommandHandlerBase(Command<Booking> command, Booking aggregateRoot) : base(command, aggregateRoot)
+        public BookingCommandHandlerBase(T1 command, Booking aggregateRoot) : base(command, aggregateRoot)
         {
         }
 
@@ -22,6 +23,6 @@ namespace EventStoreDemo.Domain.Booking.CommandHandlers
             repository.InsertOrUpdate(aggregateRoot);
         }
 
-        public override IDomainEventHandlerResolver EventHandlerResolver => new DomainEventHandlerResolver();
+        public override sealed IDomainEventHandlerResolver EventHandlerResolver => new DomainEventHandlerResolver();
     }
 }
