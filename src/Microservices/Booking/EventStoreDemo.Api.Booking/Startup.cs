@@ -40,7 +40,7 @@ namespace EventStoreDemo.Api.Booking
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

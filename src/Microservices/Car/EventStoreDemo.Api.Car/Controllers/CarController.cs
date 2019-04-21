@@ -48,6 +48,19 @@ namespace EventStoreDemo.Api.Car.Controllers
             return Ok(viewModel);
         }
 
+        [HttpPost]
+        public StatusCodeResult Aquire([FromBody] AquireCar command)
+        {
+            var car = _carRepository.GetOne(command.Registration);
+            if(car != null)
+            {
+                return new StatusCodeResult(422);
+            }
+            var commandHandler = new AquireCarCommandHandler(command);
+            commandHandler.Execute();
+            return Ok();
+        }
+
         // POST api/car/startdriving
         [HttpPost, Route("/api/cars/{registration}/usage/start")]
         public StatusCodeResult Start([FromRoute]string registration, [FromBody]StartDrivingInputModel model)

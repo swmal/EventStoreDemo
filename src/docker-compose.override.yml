@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  eventstoredemo.api.booking:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44398
+      - ASPNETCORE_HTTP_PORT=23451
+      - DEMO1_MONGODB_URL=mongodb://mongo:27017
+      - DEMO1_EVENTSTORE_URL=tcp://admin:changeit@eventstore:1113
+    ports:
+      - "23451:23451"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  eventstoredemo.api.car:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=51002
+      - ASPNETCORE_HTTP_PORT=23450
+      - DEMO1_EVENTSTORE_URL=tcp://admin:changeit@eventstore:1113
+    ports:
+      - "23450:23450"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  eventstoredemo.api.carrental:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=51002
+      - ASPNETCORE_HTTP_PORT=23452
+      - DEMO1_EVENTSTORE_URL=tcp://admin:changeit@eventstore:1113
+    ports:
+      - "23452:23452"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  eventstoredemo.api.payment:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=51002
+      - ASPNETCORE_HTTP_PORT=23453
+      - DEMO1_EVENTSTORE_URL=tcp://admin:changeit@eventstore:1113
+    ports:
+      - "23453:23453"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

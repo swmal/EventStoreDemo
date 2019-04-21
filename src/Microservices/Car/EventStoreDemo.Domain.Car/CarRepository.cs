@@ -12,21 +12,25 @@ namespace EventStoreDemo.Domain.Car
         private Dictionary<string, Car> GetAllDictionary()
         {
             var allCars = new Dictionary<string, Car>();
-            var recordedEvents = GetEventsFromStream(Streams.CarRental);
+            var recordedEvents = GetEventsFromStream(Streams.Car);
             foreach (var re in recordedEvents)
             {
                 switch (re.OriginalEvent.EventType)
                 {
                     case "CarAquired":
-                        //var e = EventDataTo<CarAquired>(re.OriginalEvent);
-                        //var car = new Car
-                        //{
-                        //    Model = e.Model,
-                        //    Milage = e.Milage,
-                        //    Registration = e.Registration,
-                        //    RegistrationDate = e.RegistrationDate
-                        //};
-                        //allCars[e.Registration] = car;
+                        var e = EventDataTo<CarAquired>(re.OriginalEvent);
+                        var car = new Car
+                        {
+                            Model = e.Model,
+                            Milage = e.Milage,
+                            Registration = e.Registration,
+                            RegistrationDate = e.RegistrationDate
+                        };
+                        allCars[e.Registration] = car;
+                        break;
+                    case "DrivingStopped":
+                        var e2 = EventDataTo<DrivingStopped>(re.OriginalEvent);
+                        allCars[e2.Registration].Milage += e2.DistanceDriven;
                         break;
                     default:
                         continue;
@@ -37,10 +41,7 @@ namespace EventStoreDemo.Domain.Car
             {
                 switch (re.OriginalEvent.EventType)
                 {
-                    case "DrivingStopped":
-                        var e2 = EventDataTo<DrivingStopped>(re.OriginalEvent);
-                        allCars[e2.Registration].Milage += e2.DistanceDriven;
-                        break;
+                    
                 }
             }
             return allCars;

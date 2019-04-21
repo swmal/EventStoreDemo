@@ -29,6 +29,21 @@ namespace EventStoreDemo.Domain.Car
             return false;
         }
 
+        public void Aquire(string registration, string model, int milage, DateTime registrationDate)
+        {
+            Registration = registration;
+            Model = model;
+            Milage = milage;
+            RegistrationDate = registrationDate;
+            AddEvent(new CarAquired
+            {
+                Registration = registration,
+                Model = model,
+                Milage = milage,
+                RegistrationDate = registrationDate
+            });
+        }
+
         public void StartDriving(DateTime startTime, Driver driver)
         {
             var reg = Registration;

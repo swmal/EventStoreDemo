@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  eventstoredemo.api.booking:
+    image: ${DOCKER_REGISTRY}demo1.bookingapi
+    build:
+      context: .
+      dockerfile: Microservices/Booking/EventStoreDemo.Api.Booking/Dockerfile
+    depends_on:
+      - mongo
+      - eventstore
+  eventstoredemo.api.car:
+    image: ${DOCKER_REGISTRY}demo1.carapi
+    build:
+      context: .
+      dockerfile: Microservices/Car/EventStoreDemo.Api.Car/Dockerfile
+    depends_on:
+      - eventstore
+  eventstoredemo.api.carrental:
+    image: ${DOCKER_REGISTRY}demo1.carrentalapi
+    build:
+      context: .
+      dockerfile: Microservices/CarRental/EventStoreDemo.Api.CarRental/Dockerfile
+    depends_on:
+      - eventstore
+  eventstoredemo.api.payment:
+    image: ${DOCKER_REGISTRY}demo1.paymentapi
+    build:
+      context: .
+      dockerfile: Microservices/Payment/EventStoreDemo.Api.Payment/Dockerfile
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+  eventstore:
+    image: eventstore/eventstore
+    ports:
+      - "2113:2113"
+      - "1113:1113"

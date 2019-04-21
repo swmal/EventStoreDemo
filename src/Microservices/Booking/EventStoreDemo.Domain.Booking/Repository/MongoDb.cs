@@ -11,6 +11,11 @@ namespace EventStoreDemo.Domain.Booking.Repository
         public static IMongoDatabase GetBookingDomainDb()
         {
             var connectionString = "mongodb://localhost:27017";
+            var envUrl = Environment.GetEnvironmentVariable("DEMO1_MONGODB_URL");
+            if (!string.IsNullOrEmpty(envUrl))
+            {
+                connectionString = envUrl;
+            }
             var client = new MongoClient(connectionString);
             return client.GetDatabase("bookingdomain");
         }

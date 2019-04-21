@@ -22,10 +22,18 @@ namespace EventStoreDemo.Domain
             return Encoding.UTF8.GetBytes(s);
         }
 
+        private string GetEventStoreUrl()
+        {
+            var envVar = Environment.GetEnvironmentVariable("DEMO1_EVENTSTORE_URL");
+            if (string.IsNullOrEmpty(envVar))
+                return "tcp://admin:changeit@localhost:1113";
+            return envVar;
+        }
+
         public void HandleEvent(Event evt)
         {
             var e = CastEvent(evt);
-            var connection = EventStoreConnection.Create(new Uri("tcp://admin:changeit@localhost:1113"), "InputFromFileConsoleApp");
+            var connection = EventStoreConnection.Create(new Uri(GetEventStoreUrl()), "DomainEventHandler");
             connection.ConnectAsync().Wait();
             var eventData = new EventData(e.Id, typeof(T).Name, true, EventToJsonBytes(e), null);
             connection.AppendToStreamAsync(e.Stream, ExpectedVersion.Any, eventData).Wait();

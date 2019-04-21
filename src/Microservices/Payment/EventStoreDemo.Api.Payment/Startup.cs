@@ -40,7 +40,7 @@ namespace EventStoreDemo.Api.Payment
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

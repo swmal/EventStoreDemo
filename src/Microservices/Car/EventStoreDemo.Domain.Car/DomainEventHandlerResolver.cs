@@ -13,6 +13,7 @@ namespace EventStoreDemo.Domain.Car
         {
             { typeof(DrivingStarted), new DrivingStartedEventHandler() },
             { typeof(DrivingStopped), new DrivingStoppedEventHandler() },
+            { typeof(CarAquired), new CarAquiredEventHandler() }
         };
 
         public IDomainEventHandler ResolveHandler(Type type)

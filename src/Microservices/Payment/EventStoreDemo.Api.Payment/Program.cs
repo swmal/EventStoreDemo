@@ -19,6 +19,7 @@ namespace EventStoreDemo.Api.Payment
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://0.0.0.0:23453")
                 .UseStartup<Startup>();
     }
 }

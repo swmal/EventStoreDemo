@@ -40,7 +40,7 @@ namespace EventStoreDemo.Api.Car
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

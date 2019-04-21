@@ -11,7 +11,9 @@ namespace EventStoreDemo.Domain.Payment
     {
         private static Dictionary<Type, IDomainEventHandler> _handlers => new Dictionary<Type, IDomainEventHandler>()
         {
-            { typeof(PaymentPerformed), new PaymentPerformedEventHandler() }
+            { typeof(PaymentPerformed), new PaymentPerformedEventHandler() },
+            { typeof(PaymentApproved), new PaymentApprovedEventHandler() },
+            { typeof(PaymentRevoked), new PaymentRevokedEventHandler() }
         };
 
         public IDomainEventHandler ResolveHandler(Type type)
