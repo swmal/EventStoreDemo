@@ -16,6 +16,13 @@ services:
       dockerfile: Microservices/Car/EventStoreDemo.Api.Car/Dockerfile
     depends_on:
       - eventstore
+  eventstoredemo.car.readstorebuilder:
+    image: ${DOCKER_REGISTRY}demo1.car.readstorebuilder
+    build:
+      context: .
+      dockerfile: Microservices/Car/ReadStoreBuilder/Dockerfile
+    depends_on:
+      - eventstore
   eventstoredemo.api.carrental:
     image: ${DOCKER_REGISTRY}demo1.carrentalapi
     build:

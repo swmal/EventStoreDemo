@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ReturnCarCommand",
+  "definitions": {
+    "CarInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Registration": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "RegistrationDate": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Model": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Milage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "NeedsService": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "CommandOfCarRental": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCarRental"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Car",
+        "Driver",
+        "ReturnedAt"
+      ],
+      "properties": {
+        "Car": {
+          "$ref": "#/definitions/CarInfo"
+        },
+        "Driver": {
+          "$ref": "#/definitions/Driver"
+        },
+        "ReturnedAt": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        }
+      }
+    }
+  ]
+}

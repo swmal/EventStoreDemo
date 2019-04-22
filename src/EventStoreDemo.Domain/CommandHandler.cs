@@ -1,6 +1,7 @@
 ﻿using EventStoreDemo.Domain.EventHandlers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace EventStoreDemo.Domain
@@ -30,8 +31,16 @@ namespace EventStoreDemo.Domain
         protected abstract void ExecuteCommand(T aggregateRoot, T1 command);
 
         protected virtual void OnCommandExecuted(T aggregateRoot) { }
+
+        private void ValidateCommand()
+        {
+            var ctx = new ValidationContext(_command);
+            Validator.ValidateObject(_command, ctx);
+        }
+
         public void Execute()
         {
+            ValidateCommand();
             ExecuteCommand(_root, _command);
             foreach(var evt in _root.DomainEvents)
             {

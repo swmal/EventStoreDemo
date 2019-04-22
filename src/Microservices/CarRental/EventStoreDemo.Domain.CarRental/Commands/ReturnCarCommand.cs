@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.Commands
@@ -13,10 +14,13 @@ namespace EventStoreDemo.Domain.CarRental.Commands
             ReturnedAt = returnDate;
         }
 
+        [Required]
         public CarInfo Car { get; private set; }
 
+        [Required]
         public Driver Driver { get; private set; }
 
+        [Required]
         public DateTime ReturnedAt { get; private set; }
 
     }

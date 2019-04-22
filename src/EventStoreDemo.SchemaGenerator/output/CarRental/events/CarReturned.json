@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CarReturned",
+  "definitions": {
+    "Driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "guid"
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Event"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Registration": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Milage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Driver": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Driver"
+            }
+          ]
+        },
+        "ReturnedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  ]
+}

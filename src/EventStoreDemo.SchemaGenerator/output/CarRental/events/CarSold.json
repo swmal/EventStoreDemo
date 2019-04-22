@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CarSold",
+  "definitions": {
+    "Event": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "guid"
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Event"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Registration": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "SoldDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace EventStoreDemo.Domain.CarRental.Commands
@@ -12,8 +13,10 @@ namespace EventStoreDemo.Domain.CarRental.Commands
             SoldDate = soldDate;
         }
 
+        [Required, StringLength(7)]
         public string Registration { get; set; }
 
+        [Required]
         public DateTime SoldDate { get; set; }
     }
 }

@@ -1,0 +1,14 @@
+{
+  "name": "read-store-builder",
+  "version": "0.0.0",
+  "description": "ReadStoreBuilder",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "node-eventstore-client": "^0.2.10"
+  }
+}

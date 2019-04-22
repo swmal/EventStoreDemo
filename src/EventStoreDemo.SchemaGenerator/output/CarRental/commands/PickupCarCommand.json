@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PickupCarCommand",
+  "definitions": {
+    "Driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "CommandOfCarRental": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCarRental"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "PickedUpAt",
+        "Milage"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "maxLength": 7,
+          "minLength": 0
+        },
+        "Driver": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Driver"
+            }
+          ]
+        },
+        "PickedUpAt": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        },
+        "Milage": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 100000.0,
+          "minimum": 0.0
+        }
+      }
+    }
+  ]
+}

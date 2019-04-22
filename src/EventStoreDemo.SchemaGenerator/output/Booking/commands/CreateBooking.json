@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CreateBooking",
+  "definitions": {
+    "BookingInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "CarRentalCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "CarRegistration": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "PickupTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ReturnTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "BookingCustomer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Address": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Street": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "ZipCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "City": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "CommandOfBooking": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfBooking"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Info": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BookingInfo"
+            }
+          ]
+        },
+        "Customer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BookingCustomer"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

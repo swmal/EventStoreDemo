@@ -1,5 +1,6 @@
 ﻿using EventStore.ClientAPI;
 using EventStoreDemo.Domain.Events;
+using EventStoreDemo.Domain.EventStore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,21 +17,8 @@ namespace EventStoreDemo.Domain.Repository
         public abstract T GetOne(object key);
         protected IEnumerable<ResolvedEvent> GetEventsFromStream(string stream)
         {
-            using (var connection = EventStoreConnection.Create(new Uri(GetEventStoreUrl()), typeof(T).Name))
-            {
-                connection.ConnectAsync().Wait();
-                var events = ReadEventsFromStart(connection, stream);
-                connection.Close();
-                return events;
-            }
-        }
-
-        private string GetEventStoreUrl()
-        {
-            var envVar = Environment.GetEnvironmentVariable("DEMO1_EVENTSTORE_URL");
-            if (string.IsNullOrEmpty(envVar))
-                return "ConnectTo=tcp://admin:changeit@localhost:1113";
-            return envVar;
+            var connection = EventStoreStreamConnection.GetConnection();
+            return ReadEventsFromStart(connection, stream);
         }
 
         //private static void PrintResolvedEvent(ResolvedEvent e)

@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "OwnerChanged",
+  "definitions": {
+    "Event": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "guid"
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Event"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "PreviousOwner",
+        "NewOwner"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "minLength": 1
+        },
+        "PreviousOwner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "NewOwner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ChangeDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  ]
+}

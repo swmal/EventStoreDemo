@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "BookingCreated",
+  "definitions": {
+    "BookingStatus": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Active",
+        "Cancelled"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "PaymentStatus": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "NoPaymentReceived",
+        "RegistrationFeePaid",
+        "FullPaymentReceived"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "BookingInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "CarRentalCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "CarRegistration": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "PickupTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ReturnTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "BookingCustomer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Address": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Street": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "ZipCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "City": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "guid"
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Event"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "BookingNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "BookingDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "BookingStatus": {
+          "$ref": "#/definitions/BookingStatus"
+        },
+        "PaymentStatus": {
+          "$ref": "#/definitions/PaymentStatus"
+        },
+        "Info": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BookingInfo"
+            }
+          ]
+        },
+        "Customer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BookingCustomer"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

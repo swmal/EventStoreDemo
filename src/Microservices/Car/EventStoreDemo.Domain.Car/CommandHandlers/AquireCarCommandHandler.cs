@@ -17,7 +17,7 @@ namespace EventStoreDemo.Domain.Car.CommandHandlers
 
         protected override void ExecuteCommand(Car car, AquireCar c)
         {
-            car.Aquire(c.Registration, c.Model, c.Milage, c.RegistrationDate);
+            car.Aquire(c.Registration, c.CarRentalCode, c.Model, c.Milage, c.RegistrationDate);
         }
     }
 }

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DrivingStopped",
+  "definitions": {
+    "Driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "guid"
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Event"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "DrivingStoppedAt",
+        "DistanceDriven"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Driver": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Driver"
+            }
+          ]
+        },
+        "DrivingStoppedAt": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        },
+        "DistanceDriven": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  ]
+}

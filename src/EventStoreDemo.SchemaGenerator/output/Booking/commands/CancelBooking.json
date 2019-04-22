@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CancelBooking",
+  "definitions": {
+    "CommandOfBooking": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfBooking"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "BookingNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "CancelledBy": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    }
+  ]
+}

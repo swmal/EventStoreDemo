@@ -11,6 +11,7 @@ using EventStoreDemo.Domain.Car;
 using EventStoreDemo.Domain.Car.CommandHandlers;
 using EventStoreDemo.Domain.Car.Commands;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace EventStoreDemo.Api.Car.Controllers
 {
@@ -18,6 +19,12 @@ namespace EventStoreDemo.Api.Car.Controllers
     [ApiController]
     public class CarController : ControllerBase
     {
+        public CarController(ILogger<CarController> logger)
+        {
+            _logger = logger;
+        }
+
+        private readonly ILogger _logger;
         private readonly CarRepository _carRepository = new CarRepository();
         // GET api/values
         [HttpGet]

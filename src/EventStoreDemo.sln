@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Start", "EventStoreDemo.Start\EventStoreDemo.Start.csproj", "{25559003-1850-4C32-88F1-05EAE23038FF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Domain", "EventStoreDemo.Domain\EventStoreDemo.Domain.csproj", "{11BB26CA-C328-43A2-A706-FD4F7B23B243}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{5D568B32-21FC-4B92-984C-F4D7F3C0A4A8}"
@@ -33,11 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventDemo.Domain.CarRental.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{2670FF02-E4C0-4CFE-9013-378EDDAFA1C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.Domain.Payment", "Microservices\Payment\EventStoreDemo.Domain.Payment\EventStoreDemo.Domain.Payment.csproj", "{A6DC9F8A-6ADA-4AE7-B63F-61FA18A781CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Domain.Payment", "Microservices\Payment\EventStoreDemo.Domain.Payment\EventStoreDemo.Domain.Payment.csproj", "{A6DC9F8A-6ADA-4AE7-B63F-61FA18A781CA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventStoreDemo.Api.Payment", "Microservices\Payment\EventStoreDemo.Api.Payment\EventStoreDemo.Api.Payment.csproj", "{866F95C0-2161-493A-B172-2747CBF58ED1}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C5DA9F76-8A44-4DC5-A4E9-F72A737082D3}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ReadStoreBuilder", "Microservices\Car\ReadStoreBuilder\ReadStoreBuilder.njsproj", "{F8E8B0BF-90B1-420E-BBD6-E21234C36043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventStoreDemo.SchemaGenerator", "EventStoreDemo.SchemaGenerator\EventStoreDemo.SchemaGenerator.csproj", "{AC845A97-854E-40ED-AB6D-548AB6A2DADE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +47,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{25559003-1850-4C32-88F1-05EAE23038FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25559003-1850-4C32-88F1-05EAE23038FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25559003-1850-4C32-88F1-05EAE23038FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25559003-1850-4C32-88F1-05EAE23038FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11BB26CA-C328-43A2-A706-FD4F7B23B243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11BB26CA-C328-43A2-A706-FD4F7B23B243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11BB26CA-C328-43A2-A706-FD4F7B23B243}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -97,6 +95,14 @@ Global
 		{C5DA9F76-8A44-4DC5-A4E9-F72A737082D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5DA9F76-8A44-4DC5-A4E9-F72A737082D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5DA9F76-8A44-4DC5-A4E9-F72A737082D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E8B0BF-90B1-420E-BBD6-E21234C36043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E8B0BF-90B1-420E-BBD6-E21234C36043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E8B0BF-90B1-420E-BBD6-E21234C36043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E8B0BF-90B1-420E-BBD6-E21234C36043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC845A97-854E-40ED-AB6D-548AB6A2DADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC845A97-854E-40ED-AB6D-548AB6A2DADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC845A97-854E-40ED-AB6D-548AB6A2DADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC845A97-854E-40ED-AB6D-548AB6A2DADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +122,7 @@ Global
 		{2670FF02-E4C0-4CFE-9013-378EDDAFA1C4} = {5D568B32-21FC-4B92-984C-F4D7F3C0A4A8}
 		{A6DC9F8A-6ADA-4AE7-B63F-61FA18A781CA} = {2670FF02-E4C0-4CFE-9013-378EDDAFA1C4}
 		{866F95C0-2161-493A-B172-2747CBF58ED1} = {2670FF02-E4C0-4CFE-9013-378EDDAFA1C4}
+		{F8E8B0BF-90B1-420E-BBD6-E21234C36043} = {4FF05155-D780-4745-8A56-56CC890E2564}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EFD80D8-B7F1-44CD-ABBE-B9950340F3C1}

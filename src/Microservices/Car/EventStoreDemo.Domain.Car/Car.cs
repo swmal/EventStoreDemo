@@ -18,6 +18,8 @@ namespace EventStoreDemo.Domain.Car
 
         public string Registration { get; set; }
 
+        public string CarRentalCode { get; set; }
+
         public DateTime RegistrationDate { get; set; }
 
         public bool NeedsService()
@@ -29,15 +31,17 @@ namespace EventStoreDemo.Domain.Car
             return false;
         }
 
-        public void Aquire(string registration, string model, int milage, DateTime registrationDate)
+        public void Aquire(string registration, string carRentalCode, string model, int milage, DateTime registrationDate)
         {
             Registration = registration;
+            CarRentalCode = carRentalCode;
             Model = model;
             Milage = milage;
             RegistrationDate = registrationDate;
             AddEvent(new CarAquired
             {
                 Registration = registration,
+                CarRentalCode = carRentalCode,
                 Model = model,
                 Milage = milage,
                 RegistrationDate = registrationDate

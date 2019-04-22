@@ -1,16 +1,21 @@
 ﻿using EventStore.ClientAPI;
 using EventStoreDemo.Domain.EventHandlers;
 using EventStoreDemo.Domain.Events;
+using EventStoreDemo.Domain.EventStore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace EventStoreDemo.Domain
 {
     public class DomainEventHandler<T> : IDomainEventHandler
         where T : Event
     {
+        public string x { get; set; }
+        // TODO: IOC...
+        private readonly EventStreamProvider _eventStream = new EventStoreStreamProvider();
         private T CastEvent(Event e)
         {
             return e as T;
@@ -22,23 +27,18 @@ namespace EventStoreDemo.Domain
             return Encoding.UTF8.GetBytes(s);
         }
 
-        private string GetEventStoreUrl()
+        private void ValidateEvent(T evt)
         {
-            var envVar = Environment.GetEnvironmentVariable("DEMO1_EVENTSTORE_URL");
-            if (string.IsNullOrEmpty(envVar))
-                return "tcp://admin:changeit@localhost:1113";
-            return envVar;
+            var ctx = new ValidationContext(evt);
+            Validator.ValidateObject(evt, ctx);
         }
-
+        
         public void HandleEvent(Event evt)
         {
             var e = CastEvent(evt);
-            var connection = EventStoreConnection.Create(new Uri(GetEventStoreUrl()), "DomainEventHandler");
-            connection.ConnectAsync().Wait();
-            var eventData = new EventData(e.Id, typeof(T).Name, true, EventToJsonBytes(e), null);
-            connection.AppendToStreamAsync(e.Stream, ExpectedVersion.Any, eventData).Wait();
-            connection.Close();
-            connection.Dispose();
+            ValidateEvent(e);
+            var data = EventToJsonBytes(e);
+            _eventStream.Publish(evt.Id, evt.Stream, typeof(T).Name, data);
         }
     }
 }

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "SellCarCommand",
+  "definitions": {
+    "CommandOfCarRental": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCarRental"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "SoldDate"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "maxLength": 7,
+          "minLength": 0
+        },
+        "SoldDate": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        }
+      }
+    }
+  ]
+}

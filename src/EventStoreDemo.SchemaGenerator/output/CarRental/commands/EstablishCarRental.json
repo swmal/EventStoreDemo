@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "EstablishCarRental",
+  "definitions": {
+    "CommandOfCarRental": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCarRental"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "Code"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 0
+        },
+        "Code": {
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 0,
+          "pattern": "[A-Z]"
+        }
+      }
+    }
+  ]
+}

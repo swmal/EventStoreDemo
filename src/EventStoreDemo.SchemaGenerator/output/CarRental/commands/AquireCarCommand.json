@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "AquireCarCommand",
+  "definitions": {
+    "CommandOfCarRental": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCarRental"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "RegistrationDate",
+        "Model",
+        "Seller",
+        "Milage",
+        "AquiredDate"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "maxLength": 7,
+          "minLength": 0
+        },
+        "RegistrationDate": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        },
+        "Model": {
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 0
+        },
+        "Seller": {
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 0
+        },
+        "Milage": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 100000.0,
+          "minimum": 0.0
+        },
+        "AquiredDate": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        }
+      }
+    }
+  ]
+}
