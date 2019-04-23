@@ -58,11 +58,11 @@ namespace EventStoreDemo.Api.Car.Controllers
         [HttpPost]
         public StatusCodeResult Aquire([FromBody] AquireCar command)
         {
-            var car = _carRepository.GetOne(command.Registration);
-            if(car != null)
-            {
-                return new StatusCodeResult(422);
-            }
+            //var car = _carRepository.GetOne(command.Registration);
+            //if(car != null)
+            //{
+            //    return new StatusCodeResult(422);
+            //}
             var commandHandler = new AquireCarCommandHandler(command);
             commandHandler.Execute();
             return Ok();

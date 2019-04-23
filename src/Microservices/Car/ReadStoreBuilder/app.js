@@ -29,7 +29,7 @@ connection.once("connected", tcpEndPoint => {
     console.log(`Connected to eventstore at ${tcpEndPoint.host}:${tcpEndPoint.port}`);
 
     connection.subscribeToStream(
-        "nodetest.stream1",
+        "demo1.car",
         resolveLinkTos,
         eventAppeared,
         subscriptionDropped,
