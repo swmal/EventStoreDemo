@@ -6,7 +6,7 @@
     ].join(" ")
 }
 
-function handleEvent(subscription, event) {
+async function handleEvent(subscription, event) {
     console.log("Event received", resumeEvent(event))
     console.log("data: ", event.originalEvent.data.toString());
 }

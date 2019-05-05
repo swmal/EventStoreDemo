@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "StartDrivingCommand",
+  "definitions": {
+    "Driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "CommandOfCar": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCar"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "DrivingStartedAt"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "maxLength": 7,
+          "minLength": 0
+        },
+        "Driver": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Driver"
+            }
+          ]
+        },
+        "DrivingStartedAt": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        }
+      }
+    }
+  ]
+}

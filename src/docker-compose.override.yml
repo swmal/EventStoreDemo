@@ -52,4 +52,5 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
   eventstoredemo.car.readstorebuilder:
     environment:
-      - DEMO1_EVENTSTORE_URL=tcp://eventstore:1113
+      - EVENTSTORE_STREAM_SUB_HOST=eventstore
+      - EVENTSTORE_STREAM_SUB_PORT=1113

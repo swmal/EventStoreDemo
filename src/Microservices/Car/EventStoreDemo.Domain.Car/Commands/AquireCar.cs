@@ -18,7 +18,7 @@ namespace EventStoreDemo.Domain.Car.Commands
         public string Model { get; set; }
 
         [Required]
-        [Range(0d, 100000)]
+        [Range(0, 100000)]
         public int Milage { get; set; }
 
         [Required]

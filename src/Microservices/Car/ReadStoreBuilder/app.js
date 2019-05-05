@@ -1,46 +1,76 @@
-//const client = require('../src/client');
-const client = require("node-eventstore-client");
-const eventhandler = require("./eventhandler.js");
+var subscriber = require("eventstore-stream-subscriber");
+var request = require("request");
 
-const resolveLinkTos = true;
+// helper methods
+function postCommand(command, url) {
+    request.post({
+        url: url,
+        body: command,
+        json: true
+    }, function (err, response, body) {
+        if (!err && response.statusCode == 200) {
+            console.log(body);
+        }
+        else {
+            if (response)
+                console.log("Status: " + response.statusCode);
+            if (err)
+                console.log("Error: " + err.toString());
+        }
+    });
+}
 
-const eventAppeared = (subscription, event) => eventhandler.handleEvent(subscription, event);
+function eventToJson(evt) {
+    console.log("Event received");
+    let e = evt.originalEvent.data.toString();
+    console.log(e);
+    return JSON.parse(e);
+}
 
-const subscriptionDropped = (subscription, reason, error) => console.log("Subscription dropped", reason, error);
+function logCommand(command) {
+    console.log("Command created: " + command.toString());
+}
 
-const libeProcessingStarted = () => console.log("Live processing started.");
+function validateEvent(eventType, jsonEvent) {
+    var schemaPath = "./schemas/Car/events/" + eventType + ".json";
+    console.log("event schemapath: " + schemaPath.toString());
+    var schema = require(schemaPath);
+    var validateSchema = require('jsonschema').validate;
+    var result = validateSchema(jsonEvent, schema);
+    if (!result.valid) {
+        console.log(eventType + " event was not valid with schema " + schemaPath);
+        console.log(result.toString());
+        return false;
+    }
+    return true;
+}
 
-const credentials = new client.UserCredentials("admin", "changeit");
+// register eventhandlers for eventtypes of a stream
+subscriber.registerHandler("CarAquired", (subscription, evt) => {
+    let json = eventToJson(evt);
+    validateEvent("CarAquired", json);
+    let command = {
+        "Registration": json.Registration,
+        "CarRentalCode": json.CarRentalCode,
+        "Model": json.Model,
+        "Milage": json.Milage,
+        "RegistrationDate" : json.RegistrationDate
+    };
+    logCommand(command);
+    postCommand(command, "http://eventstoredemo.api.car:23450/api/cars")
 
-var endpoint = "tcp://localhost:1113";
-if (process.env.DEMO1_EVENTSTORE_URL)
-    endpoint = process.env.DEMO1_EVENTSTORE_URL;
-console.log("endpoint ", endpoint);
-const settings = {};
-const connection = client.createConnection(settings, endpoint);
-
-connection.connect().catch(err => console.log("Connection failed", err));
-
-connection.on('heartbeatInfo', heartbeatInfo =>
-    console.log('Heartbeat latency', heartbeatInfo.responseReceivedAt - heartbeatInfo.requestSentAt, 'ms')
-);
-
-connection.once("connected", tcpEndPoint => {
-    console.log(`Connected to eventstore at ${tcpEndPoint.host}:${tcpEndPoint.port}`);
-
-    connection.subscribeToStream(
-        "demo1.car",
-        resolveLinkTos,
-        eventAppeared,
-        subscriptionDropped,
-        credentials
-    );
+    
 });
 
-connection.on("error", error =>
-    console.log(`Error occurred on connection: ${error}`)
-)
+// configure the subscriber
+subscriber.configure({
+    resolveLinkTos: false,
+    logHeartbeats: false
+});
 
-connection.on("closed", reason =>
-    console.log(`Connection closed, reason: ${reason}`)
+// connect and start consuming events
+subscriber.createConnection({}).then(() =>
+    subscriber.catchupAndSubscribeToStream("demo1.carrental")
+        .catch((reason) => console.log(reason))
 )
+    .catch((reason) => console.log(reason));

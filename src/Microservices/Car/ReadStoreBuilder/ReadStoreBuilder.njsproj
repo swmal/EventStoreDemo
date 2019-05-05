@@ -32,10 +32,14 @@
     <Compile Include="eventhandler.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="test.js" />
     <Content Include=".dockerignore" />
     <Content Include="Dockerfile" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="schemas\Car\commands\AquireCar.json" />
+    <Content Include="schemas\Car\commands\StartDrivingCommand.json" />
+    <Content Include="schemas\Car\commands\StopDrivingCommand.json" />
     <Content Include="schemas\Car\events\CarAquired.json" />
     <Content Include="schemas\Car\events\DrivingStarted.json" />
     <Content Include="schemas\Car\events\DrivingStopped.json" />
@@ -44,6 +48,7 @@
   <ItemGroup>
     <Folder Include="schemas\" />
     <Folder Include="schemas\Car\" />
+    <Folder Include="schemas\Car\commands\" />
     <Folder Include="schemas\Car\events\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

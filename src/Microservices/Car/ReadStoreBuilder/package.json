@@ -9,6 +9,9 @@
     "name": ""
   },
   "dependencies": {
-    "node-eventstore-client": "^0.2.10"
+    "eventstore-stream-subscriber": "^1.0.26",
+    "jsonschema": "^1.2.4",
+    "node-eventstore-client": "^0.2.10",
+    "request": "^2.88.0"
   }
 }

@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "StopDrivingCommand",
+  "definitions": {
+    "Driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "CommandOfCar": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommandOfCar"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Registration",
+        "DrivingStoppedAt",
+        "DistanceDriven"
+      ],
+      "properties": {
+        "Registration": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Driver": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Driver"
+            }
+          ]
+        },
+        "DrivingStoppedAt": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        },
+        "DistanceDriven": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 1000.0,
+          "minimum": 1.0
+        }
+      }
+    }
+  ]
+}
